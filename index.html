@@ -6,9 +6,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="icon" type="image/x-icon" href="./img/cart_icon.ico"> 
         <link rel="stylesheet" href="./css/styles.css" />
+        <title>Lista de compras</title>
     </head>
     <body>
         <main>
+            <span class="title">Lista de compras</span>
             <header>
                 <input id="item-to-add" name="item-to-add" placeholder="Elemento a agregar" type="text" aria-label="elemento a agregar" />
                 <input id="qtty-to-add" name="qtty-to-add" placeholder="1" min="1" value="1" type="number"  aria-label="cantidad de elementos a ser agregados" />
@@ -22,6 +24,11 @@
                 Ningún elemento ha sido agregado a tu lista de compras
             </div>
         </main>
+        <footer>
+            <span class="export">Exportar</span>
+            <button id="export-btn" class="export-btn">Copiar lista</button>
+        </footer>
+        <div id="pop-up" class="pop-up">Copiado a su portapapeles</div>
         <script type="text/javascript" src="./js/index.js"></script>
     </body>
 </html>
