@@ -97,7 +97,7 @@ button {
     font-family: var(--f-title);
     text-align: center;
     text-transform: uppercase;
-    padding: 2rem .5rem 0;
+    padding: 2rem .75rem 0;
     color: var(--color-4);
 }
 
