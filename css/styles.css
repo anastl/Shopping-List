@@ -58,7 +58,7 @@ footer {
     position: relative;
 }
 
-header {
+form {
     display: grid;
     grid-template-areas: 'item item' 'amount btn';
     grid-template-columns: minmax(150px, 325px) minmax(50px, 75px);
@@ -253,7 +253,7 @@ button {
 }
 
 @media screen and ( min-width:370px ) {
-    header {
+    form {
         max-width: 600px;
         grid-template-areas: none;
         grid-template-columns: minmax(150px, 325px) minmax(50px, 75px) 50px;
