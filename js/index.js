@@ -56,7 +56,7 @@ async function exportList () {
 }
 
 function pressEnter( event ) {
-    if ( event.code === 'Enter' || event.code === 'NumpadEnter' || event.code == 13 ) 
+    if ( event.code === 'Enter' || event.code === 'NumpadEnter' || event.keyCode == 13 ) 
         addItem( event )
 }
 
