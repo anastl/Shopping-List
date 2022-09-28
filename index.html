@@ -10,16 +10,16 @@
     <body>
         <main>
             <header>
-                <label for="item-to-add">Item to be added</label>
-                <input id="item-to-add" name="item-to-add" placeholder="Milk" type="text" />
-                <input id="qtty-to-add" name="qtty-to-add" placeholder="1" min="1" value="1" type="number"  aria-label="ammount of items to add" />
+                <input id="item-to-add" name="item-to-add" placeholder="Elemento a agregar" type="text" aria-label="elemento a agregar" />
+                <input id="qtty-to-add" name="qtty-to-add" placeholder="1" min="1" value="1" type="number"  aria-label="cantidad de elementos a ser agregados" />
                 <button id="add-to-list">
                     <span class="material-symbols-outlined hide">
                         add
                     </span>
                 </button>
             </header>
-            <div id="list-container" class="list-container">
+            <div id="list-container" class="list--container">
+                Ningún elemento ha sido agregado a tu lista de compras
             </div>
         </main>
         <script type="text/javascript" src="./js/index.js"></script>

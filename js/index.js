@@ -1,7 +1,7 @@
 const item = document.getElementById('item-to-add')
 const qtty = document.getElementById('qtty-to-add')
 const addBtn = document.getElementById('add-to-list')
-const listContainer = document.getElementById('list-container')
+const listContainer = document.getElementById('list--container')
 
 let shoppingList = []
 
