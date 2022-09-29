@@ -8,18 +8,24 @@ class Items {
     }
     getItemDiv ( ) {
         return (
-            `<div class="item" onclick='callFunction( event )'>
-                <span class="name">${this.name}</span>
-                <span class="amount">${this.amount}</span>
-                <span class="material-symbols-outlined delete" aria-label="remove from list">
-                    remove_shopping_cart
-                </span>
-                <span class="material-symbols-outlined increase" aria-label="increase amount of ${this.name} by one">
-                    add
-                </span> 
-                <span class="material-symbols-outlined decrease" aria-label="decrease amount of ${this.name} by one">
-                    remove
-                </span> 
+            `<div class="item">
+                <span tabindex=0 class="name">${this.name}</span>
+                <span tabindex=0 class="amount" aria-valuenow=${this.amount}>${this.amount}</span>
+                <button onclick='callFunction( event )' class='delete' aria-label="remove from list" >
+                    <span class="material-symbols-outlined">
+                        remove_shopping_cart
+                    </span>
+                </button>
+                <button onclick='callFunction( event )' class='increase' aria-label="increase amount of ${this.name} by one" >
+                    <span class="material-symbols-outlined">
+                        add
+                    </span> 
+                    </button>                        
+                <button onclick='callFunction( event )' class='decrease' aria-label="decrease amount of ${this.name} by one" >                        
+                    <span class="material-symbols-outlined">
+                        remove
+                    </span> 
+                </button>                                
             </div>`
         )
     }
@@ -111,10 +117,17 @@ function changeQuantity ( itemName, operation ) {
 }
 
 function callFunction ( event ) {
-    const className = event.target.className
-    const itemName = event.target.parentNode.childNodes[1].textContent
-    if ( className == 'material-symbols-outlined delete' ) deleteItem( itemName )
-    else if ( className == 'material-symbols-outlined increase' ) changeQuantity( itemName, 'add' )
-    else if ( className == 'material-symbols-outlined decrease' ) changeQuantity( itemName, 'remove' )
+    const className = event.target.className 
+    
+    const nameIfSpan = event.target.parentNode.parentNode.children[0].textContent
+    const nameIfBtn = event.target.parentNode.children[0].textContent
+    
+    const itemName =  className === 'material-symbols-outlined' ? nameIfSpan : nameIfBtn
+    const functionClassName = className === 'material-symbols-outlined' ? event.target.parentNode.className : className
+
+    if ( functionClassName == 'delete' ) deleteItem(  itemName )
+    else if ( functionClassName == 'increase' ) changeQuantity( itemName, 'add' )
+    else if ( functionClassName == 'decrease' ) changeQuantity( itemName, 'remove' )
+
     displayList()
 }
