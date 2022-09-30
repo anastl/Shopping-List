@@ -9,15 +9,17 @@
         <title>Lista de compras</title>
     </head>
     <body>
-        <!-- <div id="import-container" class="import--container">
-            <span>Importar</span>
-        </div> -->
+        <button id="import-btn" class="import-btn text-btn">Importar</button>
+        <div id="import-container" class="import--container">
+            <textarea id="import-area" class="import-area" name="area para importar listas de compra" placeholder="Pegue aquí su lista de compras generada previamente"></textarea>
+            <button id="submit-list-btn" class="text-btn" >Enviar</button>
+        </div>
         <main>
             <span class="title">Lista de compras</span>
             <form>
                 <input id="item-to-add" name="item-to-add" placeholder="Elemento a agregar" type="text" aria-label="elemento a agregar" />
                 <input id="qtty-to-add" name="qtty-to-add" placeholder="1" min="1" value="1" type="number"  aria-label="cantidad de elementos a ser agregados" />
-                <button id="add-to-list">
+                <button id="add-to-list" class="add-to-list-btn icon-inside">
                     <span class="material-symbols-outlined hide">
                         add
                     </span>

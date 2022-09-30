@@ -9,19 +9,19 @@ class Items {
     getItemDiv ( ) {
         return (
             `<div class="item">
-                <span tabindex=0 class="name">${this.name}</span>
-                <span tabindex=0 class="amount" aria-valuenow=${this.amount}>${this.amount}</span>
-                <button onclick='callFunction( event )' class='delete' aria-label="remove from list" >
+                <span class="name">${this.name}</span>
+                <span class="amount" aria-valuenow=${this.amount}>${this.amount}</span>
+                <button onclick='callFunction( event )' class='delete icon-inside' aria-label="remove from list" >
                     <span class="material-symbols-outlined">
                         remove_shopping_cart
                     </span>
                 </button>
-                <button onclick='callFunction( event )' class='increase' aria-label="increase amount of ${this.name} by one" >
+                <button onclick='callFunction( event )' class='increase icon-inside' aria-label="increase amount of ${this.name} by one" >
                     <span class="material-symbols-outlined">
                         add
                     </span> 
                     </button>                        
-                <button onclick='callFunction( event )' class='decrease' aria-label="decrease amount of ${this.name} by one" >                        
+                <button onclick='callFunction( event )' class='decrease icon-inside' aria-label="decrease amount of ${this.name} by one" >                        
                     <span class="material-symbols-outlined">
                         remove
                     </span> 
@@ -34,17 +34,35 @@ class Items {
 const item = document.getElementById('item-to-add')
 const qtty = document.getElementById('qtty-to-add')
 const popUp = document.getElementById('pop-up')
+const importedList = document.getElementById('import-area')
+
 const addBtn = document.getElementById('add-to-list')
 const exportBtn = document.getElementById('export-btn')
+const importBtn = document.getElementById('import-btn')
+const getListBtn = document.getElementById('submit-list-btn')
+
 const listContainer = document.getElementById('list-container')
+const importContainer = document.getElementById('import-container')
 
 let shoppingList = initializeArray()
 if ( shoppingList ) displayList()
 
 addBtn.addEventListener( 'click', addItem )
 exportBtn.addEventListener( 'click', exportList )
+importBtn.addEventListener( 'click', importList )
+getListBtn.addEventListener( 'click', () => { 
+    shoppingList = initializeArray( true ) 
+    displayList()
+} )
+
 item.addEventListener( 'keydown', pressEnter )
 qtty.addEventListener( 'keydown', pressEnter )
+
+function importList ( ) {
+    importContainer.style.display = importContainer.style.display == 'flex' ? 'none' : 'flex',
+    importBtn.style.top = importBtn.style.top == '200px' ? '0' : '200px'
+    importBtn.textContent = importBtn.textContent == 'Importar' ? 'Cerrar' : 'Importar';
+}
 
 async function exportList () {
     try {
@@ -66,9 +84,9 @@ function pressEnter( event ) {
         addItem( event )
 }
 
-function initializeArray () {
-    const memoryArray = JSON.parse( localStorage.getItem('list') )
-    if ( ! memoryArray ) return []
+function initializeArray ( list = false ) {
+    if ( ! list && ! JSON.parse( localStorage.getItem('list') ) ) return []
+    const memoryArray = list ? JSON.parse( importedList.value ) : JSON.parse( localStorage.getItem('list') )
     return memoryArray.map( ( { name, amount } ) => ( new Items( name, amount ) ) )
 }
 
@@ -77,7 +95,7 @@ function displayList () {
         listContainer.innerHTML = shoppingList.map( item => item.getItemDiv() ).join('') 
         
         const total = shoppingList.reduce( ( counter, { amount } ) => counter+=amount, 0 )
-        const totalSpan = `<span class='total-items'>Total: ${total} elemento${total > 1 ? 's' : ''}</span>`
+        const totalSpan = `<span role="alert" class='total-items'>Total: ${total} elemento${total > 1 ? 's' : ''}</span>`
         listContainer.innerHTML += totalSpan
 
         localStorage.setItem( 'list', JSON.stringify( shoppingList ) )
@@ -99,6 +117,7 @@ function addItem ( event ) {
     item.value = ''
     qtty.value = '1'
     displayList()
+    item.focus()
 }
 
 function deleteItem ( itemName ) {   
