@@ -137,6 +137,8 @@ function changeQuantity ( itemName, operation ) {
 
 function callFunction ( event ) {
     const className = event.target.className 
+
+    console.log( className )
     
     const nameIfSpan = event.target.parentNode.parentNode.children[0].textContent
     const nameIfBtn = event.target.parentNode.children[0].textContent
@@ -144,9 +146,9 @@ function callFunction ( event ) {
     const itemName =  className === 'material-symbols-outlined' ? nameIfSpan : nameIfBtn
     const functionClassName = className === 'material-symbols-outlined' ? event.target.parentNode.className : className
 
-    if ( functionClassName == 'delete' ) deleteItem(  itemName )
-    else if ( functionClassName == 'increase' ) changeQuantity( itemName, 'add' )
-    else if ( functionClassName == 'decrease' ) changeQuantity( itemName, 'remove' )
+    if ( functionClassName == 'delete icon-inside' ) deleteItem(  itemName )
+    else if ( functionClassName == 'increase icon-inside' ) changeQuantity( itemName, 'add' )
+    else if ( functionClassName == 'decrease icon-inside' ) changeQuantity( itemName, 'remove' )
 
     displayList()
 }
