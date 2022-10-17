@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,31 +9,10 @@
         <title>Lista de compras</title>
     </head>
     <body>
-        <button id="import-btn" class="import-btn text-btn">Importar</button>
-        <div id="import-container" class="import--container">
-            <textarea id="import-area" class="import-area" name="area para importar listas de compra" placeholder="Pegue aquí su lista de compras generada previamente"></textarea>
-            <button id="submit-list-btn" class="text-btn" >Enviar</button>
-        </div>
-        <main>
-            <span class="title">Lista de compras</span>
-            <form>
-                <input id="item-to-add" name="item-to-add" placeholder="Elemento a agregar" type="text" aria-label="elemento a agregar" />
-                <input id="qtty-to-add" name="qtty-to-add" placeholder="1" min="1" value="1" type="number"  aria-label="cantidad de elementos a ser agregados" />
-                <button id="add-to-list" class="add-to-list-btn icon-inside">
-                    <span class="material-symbols-outlined hide">
-                        add
-                    </span>
-                </button>
-            </form>
-            <output id="list-container" class="list--container">
-                Ningún elemento ha sido agregado a tu lista de compras
-            </output>
-        </main>
-        <footer>
-            <span class="export">Exportar</span>
-            <button id="export-btn" class="export-btn">Copiar lista</button>
-        </footer>
-        <div id="pop-up" class="pop-up">Copiado a su portapapeles</div>
-        <script type="text/javascript" src="./js/index.js"></script>
+        <div id="root"></div>
+        <!-- <div id="pop-up" class="pop-up">Copiado a su portapapeles</div> -->
+
+        <script type="module" src="/src/main.jsx"></script>
+        <script type="module" src="./index.js"></script>
     </body>
 </html>

@@ -31,32 +31,32 @@ class Items {
     }
 }
 
-const item = document.getElementById('item-to-add')
-const qtty = document.getElementById('qtty-to-add')
-const popUp = document.getElementById('pop-up')
-const importedList = document.getElementById('import-area')
+// const item = document.getElementById('item-to-add')
+// const qtty = document.getElementById('qtty-to-add')
+// const popUp = document.getElementById('pop-up')
+// const importedList = document.getElementById('import-area')
 
-const addBtn = document.getElementById('add-to-list')
-const exportBtn = document.getElementById('export-btn')
-const importBtn = document.getElementById('import-btn')
-const getListBtn = document.getElementById('submit-list-btn')
+// const addBtn = document.getElementById('add-to-list')
+// const exportBtn = document.getElementById('export-btn')
+// const importBtn = document.getElementById('import-btn')
+// const getListBtn = document.getElementById('submit-list-btn')
 
-const listContainer = document.getElementById('list-container')
-const importContainer = document.getElementById('import-container')
+// const listContainer = document.getElementById('list-container')
+// const importContainer = document.getElementById('import-container')
 
-let shoppingList = initializeArray()
-if ( shoppingList ) displayList()
+// let shoppingList = initializeArray()
+// if ( shoppingList ) displayList()
 
-addBtn.addEventListener( 'click', addItem )
-exportBtn.addEventListener( 'click', exportList )
-importBtn.addEventListener( 'click', importList )
-getListBtn.addEventListener( 'click', () => { 
-    shoppingList = initializeArray( true ) 
-    displayList()
-} )
+// addBtn.addEventListener( 'click', addItem )
+// exportBtn.addEventListener( 'click', exportList )
+// importBtn.addEventListener( 'click', importList )
+// getListBtn.addEventListener( 'click', () => { 
+//     shoppingList = initializeArray( true ) 
+//     displayList()
+// } )
 
-item.addEventListener( 'keydown', pressEnter )
-qtty.addEventListener( 'keydown', pressEnter )
+// item.addEventListener( 'keydown', pressEnter )
+// qtty.addEventListener( 'keydown', pressEnter )
 
 function importList ( ) {
     importContainer.style.display = importContainer.style.display == 'flex' ? 'none' : 'flex',
@@ -152,3 +152,5 @@ function callFunction ( event ) {
 
     displayList()
 }
+
+export { importList, exportList, pressEnter, initializeArray, displayList, addItem, deleteItem, changeQuantity, callFunction }
