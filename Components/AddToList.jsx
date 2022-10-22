@@ -21,6 +21,7 @@ export default function AddToList() {
     
     function addItem( event ) {
         event.preventDefault()
+        ! listItems.find( ( { item } ) => item === inputItem.item.toLowerCase() ) &&
         setListItems( prevItems => {
             const item = inputItem.item.toLowerCase()
             const amount = parseInt( inputItem.amount )
@@ -65,7 +66,9 @@ export default function AddToList() {
     }
 
     function sortList( event ){
-        console.log( 'SORT' )
+        // setListItems( unorderedList => {
+        //     // const 
+        // })
     }
     
     const arrayOfItems = listItems.map( ( { item, amount, isChecked } ) => < Item key={ nanoid() } item={ item } amount={ amount } isChecked={ isChecked } onAmountChanged={ changeAmountFromItem } onChecked={ strikeItem } /> )
@@ -83,7 +86,7 @@ export default function AddToList() {
                 </button>
             </form>
             <button onClick={ sortList }>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined">
                     sort
                 </span>
             </button>
