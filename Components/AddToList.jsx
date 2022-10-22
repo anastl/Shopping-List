@@ -54,17 +54,18 @@ export default function AddToList() {
     }
 
     function strikeItem( itemStriked ) {
-        const index = listItems.findIndex( ( { item } ) => item === itemStriked )
+        setListItems( prevList => {
+            return prevList.map( ( { item, amount, isChecked } ) => {
+                if ( item === itemStriked ) {
+                    isChecked = ! isChecked
+                }
+                return { item, amount, isChecked }
+            } )
+        } )
+    }
 
-        if ( listItems[ index ].isChecked ) {
-            // uncheck the element (remove strikethrough)
-            // put it under the last element without strikethrough
-                // aka above the first striked element
-        }
-        else {
-            // check the element (add strikethrough)
-            // put it in the last position
-        }
+    function sortList( event ){
+        console.log( 'SORT' )
     }
     
     const arrayOfItems = listItems.map( ( { item, amount, isChecked } ) => < Item key={ nanoid() } item={ item } amount={ amount } isChecked={ isChecked } onAmountChanged={ changeAmountFromItem } onChecked={ strikeItem } /> )
@@ -81,6 +82,11 @@ export default function AddToList() {
                     </span>
                 </button>
             </form>
+            <button onClick={ sortList }>
+                <span class="material-symbols-outlined">
+                    sort
+                </span>
+            </button>
             { arrayOfItems.length ? 
                 arrayOfItems : 
                 ( 

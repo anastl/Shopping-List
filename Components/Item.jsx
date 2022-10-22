@@ -21,8 +21,8 @@ export default function Item ( props ) {
 
     return (
         <div className="item">
-            <span className="name">{ item }</span>
-            <span className="amount" aria-valuenow={ amount }>{ amount }</span>
+            <span className={ isChecked ? 'name strike' : 'name' }>{ item }</span>
+            <span className={ isChecked ? 'amount strike' : 'amount' } aria-valuenow={ amount }>{ amount }</span>
             {/* <span className="amount">{ amount }</span> */}
             <input type='checkbox' onChange={ () => onChecked( item ) } checked={ isChecked } />
             <button onClick={ changeAmount } className='delete icon-inside' aria-label="remove from list" >

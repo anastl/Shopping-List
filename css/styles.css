@@ -172,6 +172,9 @@ textarea {
     grid-area: name;
 }
 .name::first-letter { text-transform: uppercase; }
+.strike {
+    text-decoration: line-through;
+}
 
 .amount { 
     grid-area: amount; 
