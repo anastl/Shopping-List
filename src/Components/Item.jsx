@@ -1,5 +1,5 @@
 import React from "react"
-import { callFunction } from "../index"
+import { callFunction } from "../../index"
 
 export default function Item ( props ) {
     const { item, amount, isChecked, onAmountChanged, onChecked } = props

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import AddToList from '../Components/AddToList'
-import ListView from '../Components/ListView'
-import Import_Module from '../Components/Import_Module'
-import Footer from '../Components/Footer'
+import AddToList from './Components/AddToList'
+import ListView from './Components/ListView'
+import Import_Module from './Components/Import_Module'
+import Footer from './Components/Footer'
 
 function App() {
 
