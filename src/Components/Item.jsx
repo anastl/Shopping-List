@@ -20,11 +20,11 @@ export default function Item ( props ) {
     }
 
     return (
-        <div className="item">
+        <label htmlFor={item} className="item">
             <span className={ isChecked ? 'name strike' : 'name' }>{ item }</span>
             <span className={ isChecked ? 'amount strike' : 'amount' } aria-valuenow={ amount }>{ amount }</span>
             {/* <span className="amount">{ amount }</span> */}
-            <input type='checkbox' onChange={ () => onChecked( item ) } checked={ isChecked } />
+            <input name={item} id={item} type='checkbox' onChange={ () => onChecked( item ) } checked={ isChecked } />
             <button onClick={ changeAmount } className='delete icon-inside' aria-label="remove from list" >
                 <span className="material-symbols-outlined">
                     delete
@@ -40,6 +40,6 @@ export default function Item ( props ) {
                     remove
                 </span> 
             </button>                                
-        </div>
+        </label>
     )
 }

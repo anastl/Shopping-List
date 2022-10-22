@@ -21,6 +21,7 @@ export default function AddToList() {
     
     function addItem( event ) {
         event.preventDefault()
+        inputItem.item &&
         ! listItems.find( ( { item } ) => item === inputItem.item.toLowerCase() ) &&
         setListItems( prevItems => {
             const item = inputItem.item.toLowerCase()
@@ -66,9 +67,12 @@ export default function AddToList() {
     }
 
     function sortList( event ){
-        // setListItems( unorderedList => {
-        //     // const 
-        // })
+        setListItems( unorderedList => {
+            const nonChecked = []
+            const checkedItems = [] 
+            unorderedList.forEach( ( { item, amount, isChecked } ) => isChecked ? checkedItems.push( { item, amount, isChecked } ) : nonChecked.push( { item, amount, isChecked } ) )
+            return [ ...nonChecked, ...checkedItems ]
+        })
     }
     
     const arrayOfItems = listItems.map( ( { item, amount, isChecked } ) => < Item key={ nanoid() } item={ item } amount={ amount } isChecked={ isChecked } onAmountChanged={ changeAmountFromItem } onChecked={ strikeItem } /> )
@@ -80,12 +84,12 @@ export default function AddToList() {
                 <input onChange={ handleChange } name="item" value={ inputItem.item } placeholder="Elemento a agregar" type="text" aria-label="elemento a agregar" />
                 <input onChange={ handleChange } name="amount" value={ inputItem.amount } placeholder="1" min="1" type="number"  aria-label="cantidad de elementos a ser agregados" />
                 <button onClick={ addItem } className="add-to-list-btn icon-inside">
-                    <span className="material-symbols-outlined hide">
+                    <span className="material-symbols-outlined">
                         add
                     </span>
                 </button>
             </form>
-            <button onClick={ sortList }>
+            <button onClick={ sortList } className='icon-inside'>
                 <span className="material-symbols-outlined">
                     sort
                 </span>
