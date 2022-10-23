@@ -6,6 +6,7 @@ export default function AddToList() {
 
     const [ listItems, setListItems ] = useState( JSON.parse( localStorage.getItem('list') ) || [] )
     const [ inputItem, setInputItem ] = useState( { item: '', amount: 1, isChecked: false } )
+    const [ categorySelection, setCategorySelection ] = useState( 'init' )
 
     useEffect( () => {
         localStorage.setItem('list', JSON.stringify( listItems ) )
@@ -74,6 +75,43 @@ export default function AddToList() {
             return [ ...nonChecked, ...checkedItems ]
         })
     }
+
+    function sortSelection( event ){
+        setCategorySelection( event.target.value )
+        switch ( event.target.value ) {
+            case 'create':
+                createCategory()
+                break;
+            case 'delete':
+                deleteCategory()
+                break;
+            case 'merge':
+                mergeCategories()
+                break;
+            case 'move':
+                moveElementsToCategory()
+                break;
+            default:
+                break;
+        }
+    }
+
+    function createCategory() {
+        console.log( 'createCategory' )
+    }
+
+    function deleteCategory() {
+        console.log( 'deleteCategory' )
+    }
+
+    function mergeCategories() {
+        console.log( 'mergeCategories' )
+    }
+
+    function moveElementsToCategory() {
+        console.log( 'moveElementsToCategory' )
+    }
+
     
     const arrayOfItems = listItems.map( ( { item, amount, isChecked } ) => < Item key={ nanoid() } item={ item } amount={ amount } isChecked={ isChecked } onAmountChanged={ changeAmountFromItem } onChecked={ strikeItem } /> )
 
@@ -81,19 +119,31 @@ export default function AddToList() {
         <main>
             <span className="title">Lista de compras</span>
             <form>
-                <input onChange={ handleChange } name="item" value={ inputItem.item } placeholder="Elemento a agregar" type="text" aria-label="elemento a agregar" />
-                <input onChange={ handleChange } name="amount" value={ inputItem.amount } placeholder="1" min="1" type="number"  aria-label="cantidad de elementos a ser agregados" />
-                <button onClick={ addItem } className="add-to-list-btn icon-inside">
+                <input tabIndex={0} onChange={ handleChange } name="item" value={ inputItem.item } placeholder="Elemento a agregar" type="text" aria-label="elemento a agregar" />
+                <input tabIndex={0} onChange={ handleChange } name="amount" value={ inputItem.amount } placeholder="1" min="1" type="number"  aria-label="cantidad de elementos a ser agregados" />
+                <button tabIndex={0} onClick={ addItem } className="add-to-list-btn icon-inside">
                     <span className="material-symbols-outlined">
                         add
                     </span>
                 </button>
             </form>
-            <button onClick={ sortList } className='icon-inside'>
+            <button tabIndex={0} onClick={ sortList } className='icon-inside'>
                 <span className="material-symbols-outlined">
                     sort
                 </span>
             </button>
+            <select 
+            name='category'
+            value={ categorySelection }
+            onChange={ sortSelection }
+            >
+                <option value='init'>Más opciones</option>
+                <option value='create'>Crear categoría</option>
+                <option value='delete'>Eliminar categoría</option>
+                <option value='merge'>Combinar categorías</option>
+                <option value='move'>Mover elementos de categorías</option>
+            </select>
+
             { arrayOfItems.length ? 
                 arrayOfItems : 
                 ( 
